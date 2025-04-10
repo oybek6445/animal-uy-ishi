@@ -1,7 +1,7 @@
 const pg = require('pg')
 
 const connect = async () => {
-    const db = new pg.Pool({
+    const db = new pg.Client({
         user: process.env.DB_USER || 'postgres',
         host: process.env.HOST ||'localhost',
         database: process.env.db || 'najot',
