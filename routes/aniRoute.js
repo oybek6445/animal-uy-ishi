@@ -86,5 +86,27 @@ aniRoute.get('/animals-with-type', async (req, res) => {
     }
 })
 
+aniRoute.post('/animals', async (req, res) => {
+    try {
+        const { name, age, type_id } = req.body
+        
+        if (!name || !age || !type_id) {
+            return res.status(400).json({ error: 'Name, age and type_id are required' })
+        }
+
+        const client = await connectDb()
+        const response = await client.query(
+            'INSERT INTO animals (name, age, type_id) VALUES ($1, $2, $3) RETURNING *',
+            [name, age, type_id]
+        )
+        await client.end()
+
+        res.status(201).json({ habar: response.rows[0] })
+    } catch (err) {
+        console.error('Database error:', err)
+        res.status(500).json({ error: 'Internal server error' })
+    }
+})
+
 
 module.exports = aniRoute
