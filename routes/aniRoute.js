@@ -22,12 +22,12 @@ aniRoute.get('/animals/:id', async (req, res) => {
 })
 
 aniRoute.put('/animals/:id', (req, res) => {
-    // TODO: Implement PUT logic
+   
     res.status(501).json({ error: 'Not implemented' })
 })
 
 aniRoute.delete('/animals/:id', (req, res) => {
-    // TODO: Implement DELETE logic
+    
     res.status(501).json({ error: 'Not implemented' })
 })
 
